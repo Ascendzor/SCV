@@ -1,0 +1,19 @@
+.body-content {
+	margin-top: 100px;
+}
+
+.body-content .budget-input {
+	display: inline;
+}
+
+.description {
+	display: none;
+}
+
+.under-space {
+	margin-bottom: 100px !important;
+}
+
+input {
+	max-width: 300px;
+}
