@@ -17,36 +17,20 @@
         </div>
     </div>
     <div class="container body-content">
-		<div class="btn-group btn-group-justified">
-			<div class="btn-group">
-				<button class="btn btn-default" data-bind="click: gamingDescription">Gaming</button>
-			</div>
-			<div class="btn-group">
-				<button class="btn btn-default" data-bind="click: browsingDescription">Browsing</button>
-			</div>
-			<div class="btn-group">
-				<button class="btn btn-default" data-bind="click: videoEdittingDescription">Video Editting</button>
-			</div>
-		</div>
-		<div class="jumbotron under-space">
-			<div id="aboutGaming" class="description">
-				<h1>Gaming</h1>
-				<p>Gaming computers need good CPUs, high GPUs and high RAM</p>
-			</div>
-			<div id="aboutBrowsing" class="description">
-				<h1>Browsing</h1>
-				<p>Browsing computers need moderate CPUs and low RAM</p>
-			</div>
-			<div id="aboutVideoEditting" class="description">
-				<h1>Video Editting</h1>
-				<p>Gaming computers need moderate CPUs, high GPUs and high RAM</p>
-			</div>
-		</div>
 		<label for='budgetInput'>Budget: </label>
-		<div>
+		<div class='budget-input under-space'>
 			<input class='form-control budget-input' id='budgetInput' data-bind='value: budget' />
 			<button class='btn btn-success'>Build</button>
 		</div>
+		<table class="table">
+			<tbody data-bind='foreach: hardwares'>
+				<tr>
+					<td data-bind='text: type'></td>
+					<td data-bind='text: name'></td>
+					<td data-bind='text: price'></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 </body>
 

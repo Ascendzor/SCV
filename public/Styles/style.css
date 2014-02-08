@@ -2,18 +2,11 @@
 	margin-top: 100px;
 }
 
-.body-content .budget-input {
+.body-content input {
 	display: inline;
-}
-
-.description {
-	display: none;
+	max-width: 300px;
 }
 
 .under-space {
 	margin-bottom: 100px !important;
-}
-
-input {
-	max-width: 300px;
 }
