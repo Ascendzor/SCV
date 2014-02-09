@@ -1,5 +1,17 @@
 var express = require('express');
 var leExpress = express();
+var mongoClient = require('mongodb').MongoClient;
+
+var db;
+
+mongoClient.connect('mongodb://localhost:27017/Hardwares:', function(err, database) {
+	if(err) {
+		console.log('le error');
+		return;
+	}
+	console.log('connection to database success!');
+	db = database;
+});
 
 leExpress.use(express.static(__dirname + '/public'));
 leExpress.get('/', function(req, res) {
