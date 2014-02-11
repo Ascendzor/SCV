@@ -10,3 +10,7 @@
 .under-space {
 	margin-bottom: 100px !important;
 }
+
+tfoot {
+	font-weight: bold;
+}
