@@ -2,15 +2,11 @@
 	margin-top: 100px;
 }
 
-.body-content input {
-	display: inline;
-	max-width: 300px;
+form label {
+	display: -webkit-box;
+	float: left;
 }
 
-.under-space {
-	margin-bottom: 100px !important;
-}
-
-tfoot {
-	font-weight: bold;
+.tab-content form .form-group {
+	display: -webkit-box;
 }

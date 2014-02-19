@@ -2,7 +2,7 @@ var viewModel;
 function vm(){
 	this.budget = ko.observable(1337);
 	
-	self.hardwares = ko.observableArray([
+	this.hardwares = ko.observableArray([
 		{type: 'cpu', name: '4670', price: '294.40'},
 		{type: 'graphicsCard', name: 'r9 290', price: '746.35'},
 		{type: 'motherboard', name: 'ASRock H81M-HDS', price: '86.25'},
@@ -16,19 +16,6 @@ function vm(){
 function sendBudget() {
 	console.log('le sending le budget');
 	console.log('budget: ' + viewModel.budget());
-	$.ajax({
-		type: 'POST',
-		dataType: 'json',
-		contentType: 'application/json; charset=UTF-8',
-		data: JSON.stringify({budget: viewModel.budget()}),
-		url: '/indexVM',
-		success: function (leObject) {
-			console.log(leObject.leValue);
-		},
-		error: function () {
-			console.log('le error');
-		}
-	});
 }
 
 $(function() {

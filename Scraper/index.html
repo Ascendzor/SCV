@@ -12,37 +12,76 @@
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container-fluid">
             <div class="navbar-header">
-				<a class="navbar-brand" href="#">Buildapc</a>
+				<a class="navbar-brand" href="#">Scraper</a>
             </div>
         </div>
     </div>
     <div class="container body-content">
-		<label for='budgetInput'>Budget: </label>
-		<div class='budget-input under-space'>
-			<input class='form-control budget-input' id='budgetInput' data-bind='value: budget' />
-			<button class='btn btn-success'>Build</button>
+		<ul class='nav nav-tabs nav-justified'>
+			<li class='active'>
+				<a href='#CPU' data-toggle='tab'>CPU</a>
+			</li>
+			<li>
+				<a href='#GPU' data-toggle='tab'>GPU</a>
+			</li>
+			<li>
+				<a href='#MOBO' data-toggle='tab'>MOBO</a>
+			</li>
+			<li>
+				<a href='#RAM' data-toggle='tab'>RAM</a>
+			</li>
+			<li>
+				<a href='#PSU' data-toggle='tab'>PSU</a>
+			</li>
+			<li>
+				<a href='#Case' data-toggle='tab'>Case</a>
+			</li>
+			<li>
+				<a href='#HD' data-toggle='tab'>HD</a>
+			</li>
+		</ul>
+		<div class='tab-content'>
+			<div class='tab-pane active' id='CPU'>
+				<div class="form-group">
+					<label for="CPUName">Name</label>
+					<input class="form-control" id="CPUName" placeholder="Enter Name">
+				</div>
+				<div class="form-group">
+					<label for="CPUSingleCorePerformance">SingleCorePerformance</label>
+					<input class="form-control" id="CPUSingleCorePerformance" placeholder="Enter SingleCorePerformance">
+				</div>
+				<div class="form-group">
+					<label for="CPUTotalPerformance">TotalPerformance</label>
+					<input class="form-control" id="CPUTotalPerformance" placeholder="Enter TotalPerformance">
+				</div>
+				<div class="form-group">
+					<label for="CPUPrice">Price</label>
+					<input class="form-control" id="CPUPrice" placeholder="Enter Price">
+				</div>
+				<div class="form-group">
+					<div class='btn btn-default'>Clear</div>
+					<div class='btn btn-success pull-right'>Submit</div>
+				</div>
+			</div>
+			<div class='tab-pane' id='GPU'>
+				INSERT GPU SHIT HERE
+			</div>
+			<div class='tab-pane' id='MOBO'>
+				INSERT MOBO SHIT HERE
+			</div>
+			<div class='tab-pane' id='RAM'>
+				INSERT RAM SHIT HERE
+			</div>
+			<div class='tab-pane' id='PSU'>
+				INSERT PSU SHIT HERE
+			</div>
+			<div class='tab-pane' id='Case'>
+				INSERT Case SHIT HERE
+			</div>
+			<div class='tab-pane' id='HD'>
+				INSERT HD SHIT HERE
+			</div>
 		</div>
-		<table class="table">
-			<thead>
-				<tr>
-					<th>Hardwares</th>
-				</tr>
-			</thead>
-			<tbody data-bind='foreach: hardwares'>
-				<tr>
-					<td data-bind='text: type'></td>
-					<td data-bind='text: name'></td>
-					<td data-bind='text: price'></td>
-				</tr>
-			</tbody>
-			<tfoot>
-				<tr>
-					<td></td>
-					<td>Total Price:</td>
-					<td>1337</td>
-				</tr>
-			</tfoot>
-		</table>
 	</div>
 </body>
 
