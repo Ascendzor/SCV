@@ -269,42 +269,7 @@ header {
   color: var(--text-dim) !important;
 }
 
-/* ── Custom markers ──────────────────────────────────────── */
-.dc-marker {
-  position: relative;
-}
-
-.dc-marker-dot {
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.25);
-  position: relative;
-  transition: transform 0.2s ease;
-}
-
-.dc-marker:hover .dc-marker-dot {
-  transform: scale(1.5);
-}
-
-.dc-marker-pulse {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 24px;
-  height: 24px;
-  margin: -12px 0 0 -12px;
-  border-radius: 50%;
-  opacity: 0;
-  animation: pulse 2.5s ease-out infinite;
-}
-
-@keyframes pulse {
-  0%   { transform: scale(0.5); opacity: 0.5; }
-  100% { transform: scale(2.2); opacity: 0; }
-}
-
-/* Marker tooltip */
+/* ── Marker tooltip ──────────────────────────────────────── */
 .dc-tooltip {
   background: var(--bg-card) !important;
   color: var(--text) !important;
@@ -326,21 +291,6 @@ header {
 .dc-tooltip-provider {
   color: var(--text-dim);
   font-size: 11px;
-}
-
-/* ── Cluster rings ───────────────────────────────────────── */
-.cluster-marker {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-  font-size: 13px;
-  font-weight: 700;
-  color: var(--text);
-  border: 2px solid rgba(0, 229, 255, 0.4);
-  background: rgba(0, 229, 255, 0.1);
-  backdrop-filter: blur(4px);
-  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
 }
 
 /* ── Responsive ──────────────────────────────────────────── */
