@@ -88,38 +88,11 @@ function getFilteredData() {
   });
 }
 
-function createMarkerIcon(dc) {
-  const color = TYPE_COLORS[dc.type] || "#ffffff";
-  const size = markerSize(dc.capacityMW);
-
-  return L.divIcon({
-    className: "dc-marker",
-    iconSize: [size, size],
-    iconAnchor: [size / 2, size / 2],
-    html: `
-      <div class="dc-marker-pulse" style="background:${color};"></div>
-      <div class="dc-marker-dot" style="
-        width:${size}px;
-        height:${size}px;
-        background: radial-gradient(circle at 35% 35%, ${color}, ${hexAlpha(color, 0.5)});
-        box-shadow: 0 0 ${size}px ${hexAlpha(color, 0.4)};
-      "></div>
-    `,
-  });
-}
-
-function markerSize(mw) {
-  if (mw >= 150) return 18;
-  if (mw >= 80)  return 14;
-  if (mw >= 30)  return 11;
-  return 8;
-}
-
-function hexAlpha(hex, a) {
-  const r = parseInt(hex.slice(1, 3), 16);
-  const g = parseInt(hex.slice(3, 5), 16);
-  const b = parseInt(hex.slice(5, 7), 16);
-  return `rgba(${r},${g},${b},${a})`;
+function markerRadius(mw) {
+  if (mw >= 150) return 9;
+  if (mw >= 80)  return 7;
+  if (mw >= 30)  return 5;
+  return 4;
 }
 
 function renderMarkers() {
@@ -130,22 +103,44 @@ function renderMarkers() {
   const filtered = getFilteredData();
 
   filtered.forEach((dc) => {
-    const marker = L.marker([dc.lat, dc.lng], { icon: createMarkerIcon(dc) });
+    const color = TYPE_COLORS[dc.type] || "#ffffff";
+    const r = markerRadius(dc.capacityMW);
 
-    // Tooltip on hover
+    // Outer glow ring
+    const glow = L.circleMarker([dc.lat, dc.lng], {
+      radius: r + 5,
+      fillColor: color,
+      fillOpacity: 0.12,
+      color: color,
+      weight: 0,
+      opacity: 0,
+      interactive: false,
+    });
+
+    // Main dot – uses circleMarker so it stays pixel-locked during zoom
+    const marker = L.circleMarker([dc.lat, dc.lng], {
+      radius: r,
+      fillColor: color,
+      fillOpacity: 0.85,
+      color: "#ffffff",
+      weight: 1,
+      opacity: 0.25,
+    });
+
     marker.bindTooltip(
       `<div class="dc-tooltip-name">${dc.name}</div>
        <div class="dc-tooltip-provider">${dc.provider} &middot; ${dc.capacityMW} MW</div>`,
       {
         className: "dc-tooltip",
         direction: "top",
-        offset: [0, -8],
+        offset: [0, -r],
       }
     );
 
     marker.on("click", () => showDetail(dc));
+    glow.addTo(map);
     marker.addTo(map);
-    markers.push(marker);
+    markers.push(glow, marker);
   });
 
   updateStats(filtered);
