@@ -12,83 +12,70 @@
     <header>
       <div class="header-left">
         <h1>NA Data Centers</h1>
-        <span class="subtitle">Real-time infrastructure map</span>
+        <span class="subtitle">Infrastructure timeline</span>
       </div>
       <div class="header-stats">
-        <div class="stat">
-          <span class="stat-value" id="total-count">0</span>
-          <span class="stat-label">Total Sites</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value" id="us-count">0</span>
-          <span class="stat-label">United States</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value" id="ca-count">0</span>
-          <span class="stat-label">Canada</span>
-        </div>
-        <div class="stat">
-          <span class="stat-value" id="mx-count">0</span>
-          <span class="stat-label">Mexico</span>
-        </div>
+        <div class="stat"><span class="stat-value" id="total-count">0</span><span class="stat-label">Sites</span></div>
+        <div class="stat"><span class="stat-value" id="us-count">0</span><span class="stat-label">US</span></div>
+        <div class="stat"><span class="stat-value" id="ca-count">0</span><span class="stat-label">Canada</span></div>
+        <div class="stat"><span class="stat-value" id="mx-count">0</span><span class="stat-label">Mexico</span></div>
+        <div class="stat"><span class="stat-value" id="total-mw">0</span><span class="stat-label">Total MW</span></div>
       </div>
     </header>
-
     <div class="main-content">
       <aside id="sidebar">
-        <div class="sidebar-header">
-          <h2>Filters</h2>
-        </div>
-        <div class="filter-group">
-          <label>Provider</label>
-          <div id="provider-filters" class="filter-chips"></div>
-        </div>
-        <div class="filter-group">
-          <label>Tier</label>
-          <div id="tier-filters" class="filter-chips"></div>
-        </div>
-        <div class="filter-group">
-          <label>Country</label>
-          <div id="country-filters" class="filter-chips"></div>
-        </div>
-        <div class="sidebar-header" style="margin-top: 24px;">
-          <h2>Legend</h2>
-        </div>
+        <div class="sidebar-header"><h2>Filters</h2></div>
+        <div class="filter-group"><label>Provider</label><div id="provider-filters" class="filter-chips"></div></div>
+        <div class="filter-group"><label>Tier</label><div id="tier-filters" class="filter-chips"></div></div>
+        <div class="filter-group"><label>Country</label><div id="country-filters" class="filter-chips"></div></div>
+        <div class="sidebar-header" style="margin-top:24px"><h2>Legend</h2></div>
         <div class="legend">
-          <div class="legend-item">
-            <span class="legend-dot" style="background: #00e5ff;"></span>
-            <span>Hyperscale</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-dot" style="background: #76ff03;"></span>
-            <span>Colocation</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-dot" style="background: #ff9100;"></span>
-            <span>Enterprise</span>
-          </div>
-          <div class="legend-item">
-            <span class="legend-dot" style="background: #ea80fc;"></span>
-            <span>Edge / CDN</span>
-          </div>
-        </div>
-        <div id="detail-panel" class="detail-panel hidden">
-          <div class="detail-header">
-            <h3 id="detail-name"></h3>
-            <button id="detail-close">&times;</button>
-          </div>
-          <div class="detail-body">
-            <div class="detail-row"><span class="detail-key">Provider</span><span id="detail-provider" class="detail-val"></span></div>
-            <div class="detail-row"><span class="detail-key">Location</span><span id="detail-location" class="detail-val"></span></div>
-            <div class="detail-row"><span class="detail-key">Type</span><span id="detail-type" class="detail-val"></span></div>
-            <div class="detail-row"><span class="detail-key">Tier</span><span id="detail-tier" class="detail-val"></span></div>
-            <div class="detail-row"><span class="detail-key">Capacity</span><span id="detail-capacity" class="detail-val"></span></div>
-            <div class="detail-row"><span class="detail-key">Year Opened</span><span id="detail-year" class="detail-val"></span></div>
-          </div>
+          <div class="legend-item"><span class="legend-dot" style="background:#00e5ff"></span><span>Hyperscale</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#76ff03"></span><span>Colocation</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#ff9100"></span><span>Enterprise</span></div>
+          <div class="legend-item"><span class="legend-dot" style="background:#ea80fc"></span><span>Edge / CDN</span></div>
         </div>
       </aside>
+      <div class="map-area">
+        <div id="map"></div>
+        <div id="timeline">
+          <div class="timeline-header">
+            <span class="timeline-title">Capacity Timeline</span>
+            <span class="timeline-year-label" id="timeline-year-label">2010 – 2032</span>
+          </div>
+          <div class="timeline-chart-wrap"><canvas id="timeline-chart"></canvas></div>
+          <div class="timeline-slider-wrap">
+            <input type="range" id="timeline-slider" min="2010" max="2032" value="2032" step="1" />
+            <div class="timeline-ticks" id="timeline-ticks"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-      <div id="map"></div>
+  <div id="detail-modal" class="modal-overlay hidden">
+    <div class="modal-content">
+      <button class="modal-close" id="modal-close">&times;</button>
+      <div class="modal-hero" id="modal-hero">
+        <img id="modal-image" src="" alt="" />
+        <div class="modal-hero-overlay">
+          <h2 id="modal-name"></h2>
+          <span id="modal-provider-badge" class="provider-badge"></span>
+        </div>
+      </div>
+      <div class="modal-body">
+        <div class="modal-meta">
+          <div class="meta-card"><span class="meta-value" id="modal-capacity"></span><span class="meta-label">Current MW</span></div>
+          <div class="meta-card"><span class="meta-value" id="modal-type"></span><span class="meta-label">Type</span></div>
+          <div class="meta-card"><span class="meta-value" id="modal-tier"></span><span class="meta-label">Tier</span></div>
+          <div class="meta-card"><span class="meta-value" id="modal-year"></span><span class="meta-label">Opened</span></div>
+          <div class="meta-card"><span class="meta-value" id="modal-location"></span><span class="meta-label">Location</span></div>
+        </div>
+        <div class="modal-chart-section">
+          <h3>Power Capacity Over Time (MW)</h3>
+          <div class="modal-chart-wrap"><canvas id="modal-chart"></canvas></div>
+        </div>
+      </div>
     </div>
   </div>
 
